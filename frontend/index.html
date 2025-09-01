@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Meta Tags -->
+    <title>TripCraft - AI-Powered Travel Planner | Made by Pranay Gupta</title>
+    <meta name="description" content="Create personalized travel itineraries with TripCraft AI. Plan your perfect trip with smart recommendations for destinations, hotels, and activities. Made by Pranay Gupta." />
+    <meta name="keywords" content="TripCraft, AI trip planner, travel planning, itinerary generator, vacation planner, travel AI, Pranay Gupta" />
+    <meta name="author" content="Pranay Gupta" />
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="TripCraft - AI-Powered Travel Planner" />
+    <meta property="og:description" content="Create personalized travel itineraries with TripCraft AI. Plan your perfect trip with smart recommendations." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ai-trip-planner.vercel.app" />
+    <meta property="og:image" content="/og-image.jpg" />
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Trip Planner - Plan Your Perfect Trip with AI" />
+    <meta name="twitter:description" content="Create personalized travel itineraries with AI. Made by Pranay Gupta." />
+    <meta name="twitter:image" content="/og-image.jpg" />
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#3b82f6" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="AI Trip Planner" />
+
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://maps.googleapis.com">
+
+    <!-- Google Maps API with Places Library - Optimized Loading -->
+    <script>
+      // Optimized Google Maps loading
+      function loadGoogleMaps() {
+        const script = document.createElement('script');
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBeCfsAh-NyzAll1LCUWw2GN8nbeaxrE9o&libraries=places,geometry,drawing&loading=async&callback=initMap';
+        script.async = true;
+        script.defer = true;
+        document.head.appendChild(script);
+      }
+
+      // Load Google Maps after page load for better performance
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadGoogleMaps);
+      } else {
+        loadGoogleMaps();
+      }
+    </script>
+    <script>
+      // Initialize Google Maps callback
+      window.initMap = function() {
+        console.log('✅ Google Maps API loaded successfully');
+        window.googleMapsLoaded = true;
+        // Dispatch event for components waiting for Google Maps
+        window.dispatchEvent(new Event('google-maps-loaded'));
+      };
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "AI Trip Planner",
+      "description": "Create personalized travel itineraries with AI",
+      "url": "https://ai-trip-planner.vercel.app",
+      "author": {
+        "@type": "Person",
+        "name": "Pranay Gupta"
+      },
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Web Browser"
+    }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

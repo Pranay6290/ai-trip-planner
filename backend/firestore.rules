@@ -1,0 +1,35 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can read and write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Trips can be read and written by authenticated users who own them
+    match /trips/{tripId} {
+      allow read, write: if request.auth != null &&
+        (resource == null || resource.data.userId == request.auth.uid);
+      allow create: if request.auth != null &&
+        request.resource.data.userId == request.auth.uid;
+    }
+
+    // Public read access for destinations data
+    match /destinations/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Analytics data (read only for authenticated users)
+    match /analytics/{document=**} {
+      allow read: if request.auth != null;
+      allow write: if false; // Only server-side writes
+    }
+
+    // User preferences
+    match /userPreferences/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}
